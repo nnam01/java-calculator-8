@@ -15,6 +15,12 @@ public class Application {
     }
 
     public static int addNumberInString(String input) {
+        if (input.startsWith("//")) {
+            int newLineIndex = input.indexOf("\\n");
+            String customDelim = input.substring(2, newLineIndex);
+            input = input.substring(newLineIndex + 2).replace(customDelim, ",");
+        }
+        
         StringTokenizer tokenizer = new StringTokenizer(input, ",:", false);
         int sum = 0;
         while (tokenizer.hasMoreTokens()) {
